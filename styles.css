@@ -1,0 +1,264 @@
+/* colors */
+:root {
+	--background: rgb(42, 42, 42);
+}
+
+/* defaults */
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+	font-family: sans-serif;
+}
+
+/* NAV START */
+
+header {
+	background-color: var(--background);
+	text-align: center;
+	position: fixed;
+	top: 0;
+	z-index: 1000;
+	width: 100%;
+}
+
+/* dictates the height of the nav */
+.logo {
+	color: white;
+	margin: 0.5rem 0 0.5rem 1rem;
+	text-align: left;
+	width: 54px;
+	height: 54px;
+	border-radius: 10px;
+}
+
+.nav-toggle {
+	display: none;
+}
+
+.nav-toggle-label {
+	position: absolute;
+	top: 0;
+	right: 0;
+	margin-right: 1em;
+	height: 100%;
+	display: flex;
+	align-items: center;
+}
+
+.nav-toggle-label span,
+.nav-toggle-label span:before,
+.nav-toggle-label span:after {
+	display: block;
+	background-color: white;
+	height: 2px;
+	width: 2em;
+	border-radius: 2px;
+	position: relative;
+}
+
+.nav-toggle-label span:before,
+.nav-toggle-label span:after {
+	content: '';
+	position: absolute;
+}
+
+.nav-toggle-label span:before {
+	bottom: 7px;
+}
+
+.nav-toggle-label span:after {
+	top: 7px;
+}
+
+nav {
+	width: 100%;
+	position: absolute;
+	text-align: left;
+	top: 100%;
+	right: 0;
+	background-color: var(--background);
+	transform: scale(1, 0);
+	transform-origin: top;
+	transition: transform 0.4s ease-in-out;
+}
+
+nav ul {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+nav a {
+	color: white;
+	padding: 0.5em 1em;
+	display: inline-block;
+	width: 100%;
+	text-decoration: none;
+	font-size: 1.2rem;
+	text-transform: uppercase;
+	opacity: 0;
+	transition: opacity 0.15s ease-in-out;
+}
+
+nav a:hover {
+	background-color: white;
+	color: rgb(42, 42, 42);
+}
+
+/* toggle magic, ~ looks for next sibling */
+.nav-toggle:checked ~ nav {
+	transform: scale(1, 1);
+}
+
+.nav-toggle:checked ~ nav a {
+	opacity: 1;
+	transition: opacity 0.25s ease-in-out 0.25s, background-color 0.3s, color 0.3s;
+}
+
+@media only screen and (min-width: 768px) {
+	.nav-toggle-label {
+		display: none;
+	}
+
+	header {
+		display: grid;
+		grid-template-columns: 1fr auto minmax(650px, 3fr) 1fr;
+	}
+
+	.logo {
+		grid-column: 2 / 3;
+		margin: 0.5rem;
+		text-align: center;
+	}
+
+	nav {
+		all: unset;
+		grid-column: 3 / 4;
+		display: flex;
+		justify-content: flex-end;
+		align-items: center;
+	}
+
+	nav ul {
+		display: flex;
+	}
+
+	nav li {
+		margin-left: 3em;
+		margin-bottom: 0;
+	}
+
+	nav a {
+		opacity: 1;
+		position: relative;
+		padding: 0;
+	}
+
+	nav a:hover {
+		color: white;
+		background-color: unset;
+	}
+
+	nav a::before {
+		content: '';
+		display: block;
+		height: 3px;
+		background-color: white;
+		position: absolute;
+		top: -0.5em;
+		left: 0;
+		right: 0;
+		transform: scale(0, 1);
+		transform-origin: left;
+		transition: transform 0.25s ease-in-out;
+	}
+
+	nav a:hover::before {
+		transform: scale(1, 1);
+	}
+}
+
+/* NAV END */
+
+main {
+	margin-top: 53px;
+}
+
+.intro {
+	height: 40vh;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	color: white;
+}
+
+.intro h1 {
+	width: 100%;
+	text-align: center;
+	font-size: 2rem;
+	padding: 2rem;
+	background-color: rgb(92, 92, 92);
+}
+
+.summary {
+	margin: 1rem;
+}
+
+.summary h4 {
+	font-size: 1.5rem;
+	margin-bottom: 1rem;
+}
+
+.summary p {
+	line-height: 2rem;
+}
+
+.gallery {
+	margin: 2rem 1rem;
+	display: flex;
+	justify-content: space-between;
+}
+
+.gallery img {
+	width: 30%;
+}
+
+.testimonials {
+	padding: 1rem;
+	height: 30vh;
+	color: white;
+	background-color: rgb(122, 122, 122);
+}
+
+.testimonials h2 {
+	font-size: 2rem;
+	margin: 1rem 0;
+}
+
+.meetup {
+	text-align: center;
+}
+
+.meetup h3 {
+	font-size: 1.5rem;
+	margin: 1rem;
+}
+
+.meetup img {
+	width: 50%;
+	display: block;
+	margin: auto;
+}
+
+footer {
+	height: 70px;
+	background-color: var(--background);
+	color: white;
+	line-height: 70px;
+	text-align: center;
+	margin-top: 2rem;
+	font-weight: bolder;
+}
